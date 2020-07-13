@@ -18,9 +18,5 @@ socket.on('message', function(text) {
   var newMessage = document.createElement('p');
   newMessage.innerText = text;
   container.appendChild(newMessage);
-
-  var seperator = document.createElement('br');
-  container.appendChild(seperator);
-
   container.scrollTop = container.scrollHeight;
 });
