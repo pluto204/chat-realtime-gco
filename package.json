@@ -1,7 +1,7 @@
 {
   "name": "node-js-getting-started",
   "version": "0.3.0",
-  "description": "A sample Node.js app using Express 4",
+  "description": "Chat realtime nodejs GCO",
   "engines": {
     "node": "12.x"
   },
@@ -12,7 +12,8 @@
   },
   "dependencies": {
     "ejs": "^2.5.6",
-    "express": "^4.15.2"
+    "express": "^4.17.1",
+    "socket.io": "^2.3.0"
   },
   "devDependencies": {
     "got": "^11.3.0",
@@ -25,7 +26,8 @@
   "keywords": [
     "node",
     "heroku",
-    "express"
+    "express",
+    "socket.io"
   ],
   "license": "MIT"
 }
