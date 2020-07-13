@@ -1,25 +1,20 @@
-var path = require("path");
-var express = require("express");
+var PORT = process.env.PORT || 5000;
+var express = require('express');
 var app = express();
-var server = require('http').createServer(app);
+
+var http = require('http');
+var server = http.Server(app);
+
+app.use(express.static('client'));
+
+server.listen(PORT, function() {
+  console.log('Chat server running');
+});
+
 var io = require('socket.io')(server);
 
-//Chỉ ra đường dẫn chứa css, js, images...
-app.use(express.static(path.join(__dirname, 'public')));
-
-//Tạo router
-app.get("/", function (req, res) {
-    res.sendFile(path.join(__dirname + '/views/chat.html'));
+io.on('connection', function(socket) {
+  socket.on('message', function(msg) {
+    io.emit('message', msg);
+  });
 });
-
-//Tạo socket 
-io.on('connection', function (socket) {
-    console.log('Welcome to server chat');
-
-    socket.on('send', function (data) {
-        io.sockets.emit('send', data);
-    });
-});
-
-//Khởi tạo 1 server listen tại 1 port
-server.listen(8888);
